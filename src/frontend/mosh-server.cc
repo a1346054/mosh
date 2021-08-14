@@ -728,12 +728,12 @@ static void serve( int host_fd, Terminal::Complete &terminal, ServerConnection &
       if ( sel.read( network_fd ) ) {
 	/* packet received from the network */
 	network.recv();
-	
+
 	/* is new user input available for the terminal? */
 	if ( network.get_remote_state_num() != last_remote_num ) {
 	  last_remote_num = network.get_remote_state_num();
 
-	  
+
 	  Network::UserStream us;
 	  us.apply_string( network.get_remote_diff() );
 	  /* apply userstream to terminal */
@@ -828,12 +828,12 @@ static void serve( int host_fd, Terminal::Complete &terminal, ServerConnection &
 	  }
 	}
       }
-      
+
       if ( (!network.shutdown_in_progress()) && sel.read( host_fd ) ) {
 	/* input from the host needs to be fed to the terminal */
 	const int buf_size = 16384;
 	char buf[ buf_size ];
-	
+
 	/* fill buffer if possible */
 	ssize_t bytes_read = read( host_fd, buf, buf_size );
 
@@ -843,7 +843,7 @@ static void serve( int host_fd, Terminal::Complete &terminal, ServerConnection &
 	  network.start_shutdown();
 	} else {
 	  terminal_to_host += terminal.act( string( buf, bytes_read ) );
-	
+
 	  /* update client with new state of terminal */
 	  network.set_current_state( terminal );
 	}
@@ -858,7 +858,7 @@ static void serve( int host_fd, Terminal::Complete &terminal, ServerConnection &
       if ( network_timeout_ms &&
 	   network_timeout_ms <= time_since_remote_state ) {
 	idle_shutdown = true;
-	fprintf( stderr, "Network idle for %llu seconds.\n", 
+	fprintf( stderr, "Network idle for %llu seconds.\n",
 		 static_cast<unsigned long long>( time_since_remote_state / 1000 ) );
       }
       if ( sel.signal( SIGUSR1 )
@@ -876,7 +876,7 @@ static void serve( int host_fd, Terminal::Complete &terminal, ServerConnection &
 	  break;
 	}
       }
-      
+
       /* quit if our shutdown has been acknowledged */
       if ( network.shutdown_in_progress() && network.shutdown_acknowledged() ) {
 	break;
@@ -894,7 +894,7 @@ static void serve( int host_fd, Terminal::Complete &terminal, ServerConnection &
 
       #ifdef HAVE_UTEMPTER
       /* update utmp if has been more than 30 seconds since heard from client */
-      if ( connected_utmp 
+      if ( connected_utmp
 	   && time_since_remote_state > 30000 ) {
 	utempter_remove_record( host_fd );
 

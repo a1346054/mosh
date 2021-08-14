@@ -48,12 +48,12 @@
 pid_t my_forkpty( int *amaster, char *name,
 		  const struct termios *termp,
 		  const struct winsize *winp )
-{ 
+{
   /* For Solaris and AIX */
-  int master, slave; 
-  char *slave_name; 
-  pid_t pid; 
-   
+  int master, slave;
+  char *slave_name;
+  pid_t pid;
+
 #ifdef _AIX
 #define PTY_DEVICE "/dev/ptc"
 #else

@@ -86,7 +86,7 @@ namespace Parser {
   class CSI_Ignore : public State {
     Transition input_state_rule( wchar_t ch ) const;
   };
-  
+
   class DCS_Entry : public State {
     ActionPointer enter( void ) const;
     Transition input_state_rule( wchar_t ch ) const;

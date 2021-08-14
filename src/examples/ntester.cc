@@ -56,11 +56,11 @@ int main( int argc, char *argv[] )
     if ( argc > 1 ) {
       server = false;
       /* client */
-      
+
       key = argv[ 1 ];
       ip = argv[ 2 ];
       port = argv[ 3 ];
-      
+
       raw_n = new Transport<UserStream, UserStream>( me, remote, key, ip, port );
     } else {
       raw_n = new Transport<UserStream, UserStream>( me, remote, NULL, NULL );
@@ -86,7 +86,7 @@ int main( int argc, char *argv[] )
 	  perror( "select" );
 	  exit( 1 );
 	}
-	
+
 	n->tick();
 
 	if ( sel.read( network_fd ) ) {
@@ -167,6 +167,6 @@ int main( int argc, char *argv[] )
     if ( tcsetattr( STDIN_FILENO, TCSANOW, &saved_termios ) < 0 ) {
       perror( "tcsetattr" );
       exit( 1 );
-    }    
+    }
   }
 }

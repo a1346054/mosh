@@ -58,7 +58,7 @@ string Fragment::tostring( void )
   assert( initialized );
 
   string ret;
-  
+
   ret += network_order_string( id );
 
   fatal_assert( !( fragment_num & 0x8000 ) ); /* effective limit on size of a terminal screen change or buffered user input */

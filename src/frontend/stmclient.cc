@@ -208,7 +208,7 @@ void STMClient::shutdown( void )
 
   /* Restore terminal and terminal-driver state */
   swrite( STDOUT_FILENO, display.close().c_str() );
-  
+
   if ( tcsetattr( STDIN_FILENO, TCSANOW, &saved_termios ) < 0 ) {
     perror( "tcsetattr" );
     exit( 1 );
@@ -239,7 +239,7 @@ void STMClient::main_init( void )
   if ( ioctl( STDIN_FILENO, TIOCGWINSZ, &window_size ) < 0 ) {
     perror( "ioctl TIOCGWINSZ" );
     return;
-  }  
+  }
 
   /* local state */
   local_framebuffer = Terminal::Framebuffer( window_size.ws_col, window_size.ws_row );
@@ -290,7 +290,7 @@ void STMClient::output_new_frame( void )
 void STMClient::process_network_input( void )
 {
   network->recv();
-  
+
   /* Now give hints to the overlays */
   overlays.get_notification_engine().server_heard( network->get_latest_remote_state().timestamp );
   overlays.get_notification_engine().server_acked( network->get_sent_state_acked_timestamp() );
@@ -366,7 +366,7 @@ bool STMClient::process_user_input( int fd )
       } else {
 	/* Escape key followed by anything other than . and ^ gets sent literally */
 	net.get_current_state().push_back( Parser::UserByte( escape_key ) );
-	net.get_current_state().push_back( Parser::UserByte( the_byte ) );	  
+	net.get_current_state().push_back( Parser::UserByte( the_byte ) );
       }
 
       quit_sequence_started = false;
@@ -391,7 +391,7 @@ bool STMClient::process_user_input( int fd )
       repaint_requested = true;
     }
 
-    net.get_current_state().push_back( Parser::UserByte( the_byte ) );		
+    net.get_current_state().push_back( Parser::UserByte( the_byte ) );
   }
 
   return true;
@@ -404,16 +404,16 @@ bool STMClient::process_resize( void )
     perror( "ioctl TIOCGWINSZ" );
     return false;
   }
-  
+
   /* tell remote emulator */
   Parser::Resize res( window_size.ws_col, window_size.ws_row );
-  
+
   if ( !network->shutdown_in_progress() ) {
     network->get_current_state().push_back( res );
   }
 
   /* note remote emulator will probably reply with its own Resize to adjust our state */
-  
+
   /* tell prediction engine */
   overlays.get_prediction_engine().reset();
 
@@ -480,7 +480,7 @@ bool STMClient::main( void )
       if ( network_ready_to_read ) {
 	process_network_input();
       }
-    
+
       if ( sel.read( STDIN_FILENO ) && !process_user_input( STDIN_FILENO ) ) { /* input from the user needs to be fed to the network */
 	if ( !network->has_remote_addr() ) {
 	  break;
@@ -577,4 +577,3 @@ bool STMClient::main( void )
   }
   return clean_shutdown;
 }
-

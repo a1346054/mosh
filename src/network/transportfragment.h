@@ -102,7 +102,7 @@ namespace Network {
     vector<Fragment> make_fragments( const Instruction &inst, size_t MTU );
     uint64_t last_ack_sent( void ) const { return last_instruction.ack_num(); }
   };
-  
+
 }
 
 #endif

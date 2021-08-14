@@ -143,7 +143,7 @@ Base64Key::Base64Key(PRNG &prng)
 string Base64Key::printable_key( void ) const
 {
   char base64[ 24 ];
-  
+
   base64_encode( key, 16, base64, 24 );
 
   if ( (base64[ 23 ] != '=')

@@ -47,7 +47,7 @@ string Complete::act( const string &str )
   for ( unsigned int i = 0; i < str.size(); i++ ) {
     /* parse octet into up to three actions */
     parser.input( str[ i ], actions );
-    
+
     /* apply actions to terminal and delete them */
     for ( Actions::iterator it = actions.begin();
 	  it != actions.end();
@@ -92,7 +92,7 @@ string Complete::diff_from( const Complete &existing ) const
       new_inst->MutableExtension( hostbytes )->set_hoststring( update );
     }
   }
-  
+
   return output.SerializeAsString();
 }
 

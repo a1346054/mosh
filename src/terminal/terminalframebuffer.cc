@@ -120,7 +120,7 @@ void Framebuffer::scroll( int N )
 void DrawState::new_grapheme( void )
 {
   combining_char_col = cursor_col;
-  combining_char_row = cursor_row;  
+  combining_char_row = cursor_row;
 }
 
 void DrawState::snap_cursor_to_border( void )

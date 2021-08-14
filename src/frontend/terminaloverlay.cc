@@ -272,7 +272,7 @@ void NotificationEngine::apply( Framebuffer &fb ) const
       this_cell->get_renditions().set_attribute(Renditions::bold, true);
       this_cell->get_renditions().set_foreground_color( 7 );
       this_cell->get_renditions().set_background_color( 4 );
-      
+
       this_cell->append( ch );
       this_cell->set_wide( chwidth == 2 );
       combining_cell = this_cell;
@@ -306,7 +306,7 @@ void NotificationEngine::adjust_message( void )
 {
   if ( timestamp() >= message_expiration ) {
     message.clear();
-  }  
+  }
 }
 
 int NotificationEngine::wait_time( void ) const
@@ -420,7 +420,7 @@ void PredictionEngine::init_cursor( const Framebuffer &fb )
 {
   if ( cursors.empty() ) {
     /* initialize new cursor prediction */
-    
+
     cursors.push_back( ConditionalCursorMove( local_frame_sent + 1,
 					      fb.ds.get_cursor_row(),
 					      fb.ds.get_cursor_col(),
@@ -552,7 +552,7 @@ void PredictionEngine::cull( const Framebuffer &fb )
 	}
 
 	/* When predictions come in quickly, slowly take away the glitch trigger. */
-	if ( now - j->prediction_time < GLITCH_THRESHOLD 
+	if ( now - j->prediction_time < GLITCH_THRESHOLD
 	     && ( glitch_trigger > 0 && now - GLITCH_REPAIR_MININTERVAL >= last_quick_confirmation ) ) {
 	  glitch_trigger--;
 	  last_quick_confirmation = now;
@@ -593,7 +593,7 @@ void PredictionEngine::cull( const Framebuffer &fb )
   }
 
   /* go through cursor predictions */
-  if ( !cursors.empty() 
+  if ( !cursors.empty()
        && cursor().get_validity( fb,
 				local_frame_acked, local_frame_late_acked ) == IncorrectOrExpired ) {
     /*
@@ -721,7 +721,7 @@ void PredictionEngine::new_user_byte( char the_byte, const Framebuffer &fb )
 	      cell.tentative_until_epoch = prediction_epoch;
 	      cell.expire( local_frame_sent + 1, now );
 	      cell.original_contents.push_back( *fb.get_cell( cursor().row, i ) );
-	  
+
 	      if ( i + 2 < fb.ds.get_width() ) {
 		ConditionalOverlayCell &next_cell = the_row.overlay_cells[ i + 1 ];
 		const Cell *next_cell_actual = fb.get_cell( cursor().row, i + 1 );
@@ -788,7 +788,7 @@ void PredictionEngine::new_user_byte( char the_byte, const Framebuffer &fb )
 	    cell.replacement = *prev_cell_actual;
 	  }
 	}
-	
+
 	ConditionalOverlayCell &cell = the_row.overlay_cells[ cursor().col ];
 	cell.reset_with_orig();
 	cell.active = true;
@@ -834,7 +834,7 @@ void PredictionEngine::new_user_byte( char the_byte, const Framebuffer &fb )
 	newline_carriage_return( fb );
       } else {
 	//	fprintf( stderr, "Execute 0x%x\n", act.ch );
-	become_tentative();	
+	become_tentative();
       }
     } else if ( type_act == typeid( Parser::Esc_Dispatch ) ) {
       //      fprintf( stderr, "Escape sequence\n" );
@@ -848,7 +848,7 @@ void PredictionEngine::new_user_byte( char the_byte, const Framebuffer &fb )
 	}
       } else if ( act.char_present && (act.ch == L'D') ) { /* left arrow */
 	init_cursor( fb );
-	
+
 	if ( cursor().col > 0 ) {
 	  cursor().col--;
 	  cursor().expire( local_frame_sent + 1, now );

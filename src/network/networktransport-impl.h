@@ -93,7 +93,7 @@ void Transport<MyState, RemoteState>::recv( void )
 	return;
       }
     }
-    
+
     /* now, make sure we do have the old state */
     bool found = 0;
     typename list< TimestampedState<RemoteState> >::iterator reference_state = received_states.begin();
@@ -104,12 +104,12 @@ void Transport<MyState, RemoteState>::recv( void )
       }
       reference_state++;
     }
-    
+
     if ( !found ) {
       //    fprintf( stderr, "Ignoring out-of-order packet. Reference state %d has been discarded or hasn't yet been received.\n", int(inst.old_num) );
       return; /* this is security-sensitive and part of how we enforce idempotency */
     }
-    
+
     /* Do not accept state if our queue is full */
     /* This is better than dropping states from the middle of the
        queue (as sender does), because we don't want to ACK a state
@@ -196,7 +196,7 @@ string Transport<MyState, RemoteState>::get_remote_diff( void )
 	i != received_states.rend();
 	i++ ) {
     i->state.subtract( oldest_receiver_state );
-  }  
+  }
 
   last_receiver_state = received_states.back().state;
 

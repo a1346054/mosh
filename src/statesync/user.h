@@ -71,17 +71,17 @@ namespace Network {
   {
   private:
     deque<UserEvent> actions;
-    
+
   public:
     UserStream() : actions() {}
-    
+
     void push_back( const Parser::UserByte & s_userbyte ) { actions.push_back( UserEvent( s_userbyte ) ); }
     void push_back( const Parser::Resize & s_resize ) { actions.push_back( UserEvent( s_resize ) ); }
-    
+
     bool empty( void ) const { return actions.empty(); }
     size_t size( void ) const { return actions.size(); }
     const Parser::Action &get_action( unsigned int i ) const;
-    
+
     /* interface for Network::Transport */
     void subtract( const UserStream *prefix );
     string diff_from( const UserStream &existing ) const;

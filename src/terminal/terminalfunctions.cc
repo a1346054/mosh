@@ -55,7 +55,7 @@ static void CSI_EL( Framebuffer *fb, Dispatcher *dispatch )
 {
   switch ( dispatch->getparam( 0, 0 ) ) {
   case 0: /* default: active position to end of line, inclusive */
-    clearline( fb, -1, fb->ds.get_cursor_col(), fb->ds.get_width() - 1 );    
+    clearline( fb, -1, fb->ds.get_cursor_col(), fb->ds.get_width() - 1 );
     break;
   case 1: /* start of screen to active position, inclusive */
     clearline( fb, -1, 0, fb->ds.get_cursor_col() );
@@ -257,7 +257,7 @@ static void CSI_TBC( Framebuffer *fb, Dispatcher *dispatch )
   int param = dispatch->getparam( 0, 0 );
   switch ( param ) {
   case 0: /* clear this tab stop */
-    fb->ds.clear_tab( fb->ds.get_cursor_col() );    
+    fb->ds.clear_tab( fb->ds.get_cursor_col() );
     break;
   case 3: /* clear all tab stops */
     fb->ds.clear_default_tabs();

@@ -110,17 +110,17 @@ namespace Crypto {
   public:
     Nonce( uint64_t val );
     Nonce( const char *s_bytes, size_t len );
-    
+
     string cc_str( void ) const { return string( bytes + 4, 8 ); }
     const char *data( void ) const { return bytes; }
     uint64_t val( void ) const;
   };
-  
+
   class Message {
   public:
     const Nonce nonce;
     const string text;
-    
+
     Message( const char *nonce_bytes, size_t nonce_len,
 	     const char *text_bytes, size_t text_len )
       : nonce( nonce_bytes, nonce_len ),
@@ -130,7 +130,7 @@ namespace Crypto {
       : nonce( s_nonce ),
       text( s_text ) {}
   };
-  
+
   class Session {
   private:
     Base64Key key;
@@ -141,7 +141,7 @@ namespace Crypto {
     AlignedBuffer plaintext_buffer;
     AlignedBuffer ciphertext_buffer;
     AlignedBuffer nonce_buffer;
-    
+
   public:
     static const int RECEIVE_MTU = 2048;
     /* Overhead (not counting the nonce, which is handled by network transport) */
@@ -149,13 +149,13 @@ namespace Crypto {
 
     Session( Base64Key s_key );
     ~Session();
-    
+
     const string encrypt( const Message & plaintext );
     const Message decrypt( const char *str, size_t len );
     const Message decrypt( const string & ciphertext ) {
       return decrypt( ciphertext.data(), ciphertext.size() );
     }
-    
+
     Session( const Session & );
     Session & operator=( const Session & );
   };

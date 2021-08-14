@@ -48,7 +48,7 @@ using namespace Network;
 
 template <class MyState>
 TransportSender<MyState>::TransportSender( Connection *s_connection, MyState &initial_state )
-  : connection( s_connection ), 
+  : connection( s_connection ),
     current_state( initial_state ),
     sent_states( 1, TimestampedState<MyState>( timestamp(), 0, initial_state ) ),
     assumed_receiver_state( sent_states.begin() ),
@@ -166,7 +166,7 @@ void TransportSender<MyState>::tick( void )
   }
 
   /* Determine if a new diff or empty ack needs to be sent */
-    
+
   string diff = current_state.diff_from( assumed_receiver_state->state );
 
   attempt_prospective_resend_optimization( diff );

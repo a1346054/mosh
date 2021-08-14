@@ -11,4 +11,3 @@ version.h:	../../VERSION
 		mv -f $@.new $@; \
 	fi
 	@rm -f $@.new
-

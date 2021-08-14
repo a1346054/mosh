@@ -103,7 +103,7 @@ namespace Terminal {
     void newparamchar( const Parser::Param *act );
     void collect( const Parser::Collect *act );
     void clear( const Parser::Clear *act );
-    
+
     std::string str( void );
 
     void dispatch( Function_Type type, const Parser::Action *act, Framebuffer *fb );

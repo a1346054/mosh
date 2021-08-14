@@ -266,13 +266,13 @@ static void emulate_terminal( int fd )
 	perror( "read" );
 	return;
       }
-      
+
       std::string terminal_to_host;
-      
+
       for ( int i = 0; i < bytes_read; i++ ) {
 	terminal_to_host += complete.act( Parser::UserByte( buf[ i ] ) );
       }
-      
+
       if ( swrite( fd, terminal_to_host.c_str(), terminal_to_host.length() ) < 0 ) {
 	break;
       }
@@ -288,7 +288,7 @@ static void emulate_terminal( int fd )
 	perror( "read" );
 	return;
       }
-      
+
       std::string terminal_to_host = complete.act( std::string( buf, bytes_read ) );
       if ( swrite( fd, terminal_to_host.c_str(), terminal_to_host.length() ) < 0 ) {
 	break;

@@ -122,7 +122,7 @@ public:
     }
     if ( predict_overwrite && !strcmp( predict_overwrite, "yes" ) ) {
       overlays.get_prediction_engine().set_predict_overwrite( true );
-    } 
+    }
   }
 
   void init( void );

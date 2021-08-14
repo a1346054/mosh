@@ -80,15 +80,15 @@ namespace Network {
     Direction direction;
     uint16_t timestamp, timestamp_reply;
     string payload;
-    
+
     Packet( Direction s_direction,
 	    uint16_t s_timestamp, uint16_t s_timestamp_reply, const string & s_payload )
       : seq( Crypto::unique() ), direction( s_direction ),
 	timestamp( s_timestamp ), timestamp_reply( s_timestamp_reply ), payload( s_payload )
     {}
-    
+
     Packet( const Message & message );
-    
+
     Message toMessage( void );
   };
 

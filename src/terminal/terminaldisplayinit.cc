@@ -101,7 +101,7 @@ Display::Display( bool use_environment )
       default:
 	throw std::runtime_error( "Unknown terminfo error." );
 	break;
-      } 
+      }
     }
 
     /* check for ECH */

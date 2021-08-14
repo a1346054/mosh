@@ -9,9 +9,9 @@ eeval()
     echo "$0: $*" >&2
     eval "$@"
     rv=$?
-    if [ $rv -ne 0 ]; then
-	echo "$0: failed, exitcode $rv"
-	exit $rv
+    if [ "$rv" -ne 0 ]; then
+        echo "$0: failed, exitcode $rv"
+        exit "$rv"
     fi
     return 0
 }

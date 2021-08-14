@@ -10,13 +10,13 @@ __mosh_init_completion()
     fi
 }
 
-_mosh () {
+_mosh() {
     local cur
 
     __mosh_init_completion || return
 
     local simple_flags="-a -b -4 -6 -p"
-    local flags="--client= --server= --predict= --family= --port= 
+    local flags="--client= --server= --predict= --family= --port=
     --bind-server= --ssh= --no-init --help --version"
 
     if [[ "$cur" == --* && "$COMP_CWORD" == 1 ]]; then

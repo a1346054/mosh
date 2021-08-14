@@ -31,7 +31,6 @@ fi
 
 echo "Building into prefix..."
 
-
 #
 # XXX This script abuses Configure's --prefix argument badly.  It uses
 # it as a $DESTDIR, but --prefix can also affect paths in generated
@@ -43,8 +42,7 @@ ARCHS=" ppc ppc64 i386 x86_64"
 
 pushd .. > /dev/null
 
-if [ ! -f configure ];
-then
+if [ ! -f configure ]; then
     echo "Running autogen."
     PATH=/opt/local/bin:$PATH ./autogen.sh
 fi
@@ -77,7 +75,6 @@ fi
 
 echo "Building universal binaries for archs ${BUILT_ARCHS}..."
 
-
 rm -rf "$PREFIX"
 # Copy one architecture to get all files into place.
 for arch in $BUILT_ARCHS; do
@@ -90,7 +87,7 @@ done
 for prog in local/bin/mosh-client local/bin/mosh-server; do
     archprogs=()
     for arch in $BUILT_ARCHS; do
-	archprogs+=("${PREFIX}_${arch}/$prog")
+        archprogs+=("${PREFIX}_${arch}/$prog")
     done
     lipo -create "${archprogs[@]}" -output "${PREFIX}/$prog"
 done
@@ -113,7 +110,7 @@ if which -s pkgbuild; then
     echo "Preprocessing package description..."
     PKGID=edu.mit.mosh.mosh.pkg
     for file in Distribution; do
-	sed -e "s/@PACKAGE_VERSION@/${PACKAGE_VERSION}/g" ${file}.in > ${file}
+        sed -e "s/@PACKAGE_VERSION@/${PACKAGE_VERSION}/g" ${file}.in > ${file}
     done
     echo "Running pkgbuild/productbuild..."
     mkdir -p Resources/en.lproj
@@ -132,9 +129,8 @@ else
     OUTDIR=mosh-package.pmdoc
     mkdir -p "$OUTDIR"
     pushd "$INDIR" > /dev/null
-    for file in *
-    do
-	sed -e 's/$PACKAGE_VERSION/'"$PACKAGE_VERSION"'/g' "$file" > "../$OUTDIR/$file"
+    for file in *; do
+        sed -e 's/$PACKAGE_VERSION/'"$PACKAGE_VERSION"'/g' "$file" > "../$OUTDIR/$file"
     done
     popd > /dev/null
     echo "Running PackageMaker..."
@@ -143,9 +139,7 @@ else
     rm -rf "$OUTDIR"
 fi
 
-
-if [ -f "$OUTFILE" ];
-then
+if [ -f "$OUTFILE" ]; then
     echo "Successfully built $OUTFILE with archs ${BUILT_ARCHS}."
 else
     echo "There was an error building $OUTFILE."

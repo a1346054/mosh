@@ -29,7 +29,7 @@ init:
     - git config --global core.autocrlf input
 #
 # Install needed build dependencies
-# 
+#
 install:
     - '%CYG_ROOT%\setup-x86_64.exe --quiet-mode --no-shortcuts --upgrade-also --packages autoconf,autogen,automake,cygwin-devel,git,gcc-core,gcc-g++,libncurses-devel,libprotobuf-devel,libssl-devel,make,openssh,perl,perl_pods,pkg-config,tmux,zlib-devel'
     - '%CYG_ROOT%\bin\cygcheck -dc'
@@ -47,7 +47,7 @@ build_script:
     - '%CYG_BASH% -lc "cd $APPVEYOR_BUILD_FOLDER && ./appveyor.sh build_script"'
 #
 # Disable tests for now
-# 
+#
 test: off
 
 # on_finish:

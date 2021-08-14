@@ -37,7 +37,7 @@ tmux_commands()
     printf "send-keys 0x0d\n"
     # This will get killed by SIGPIPE.
     while printf "show-options\n" && sleep 1; do
-	:
+        :
     done
 }
 
@@ -56,7 +56,7 @@ baseline()
 	   done)
     read -r x
     while printf '%s' "$blat"; do
-	:
+        :
     done &
     printpid=$!
     (sleep 120; kill "$$" "$printpid") &
@@ -76,19 +76,19 @@ baseline()
 post()
 {
     if grep -q '=== normal exit ===' "$(basename "$0").d/baseline.capture"; then
-	exit 0
+        exit 0
     fi
     exit 1
 }
 
 case $1 in
-    tmux)
-	shift;
-	tmux_stdin "$@";;
-    baseline)
-	baseline;;
-    post)
-	post;;
-    *)
-	fail "unknown test argument %s\n" "$1";;
+  tmux)
+    shift;
+    tmux_stdin "$@";;
+  baseline)
+    baseline;;
+  post)
+    post;;
+  *)
+    fail "unknown test argument %s\n" "$1";;
 esac

@@ -36,11 +36,11 @@ d0 Ð d1 Ñ d2 Ò d3 Ó d4 Ô d5 Õ d6 Ö d7 × d8 Ø d9 Ù da Ú db Û dc Ü dd
 e0 à e1 á e2 â e3 ã e4 ä e5 å e6 æ e7 ç e8 è e9 é ea ê eb ë ec ì ed í ee î ef ï 
 f0 ð f1 ñ f2 ò f3 ó f4 ô f5 õ f6 ö f7 ÷ f8 ø f9 ù fa ú fb û fc ü fd ý fe þ ff ÿ 
 EOF
-} 
+}
 
 case $1 in
-    baseline|direct)
-	baseline;;
-    *)
-	fail "unknown test argument %s\n" "$1";;
+  baseline|direct)
+    baseline;;
+  *)
+    fail "unknown test argument %s\n" "$1";;
 esac

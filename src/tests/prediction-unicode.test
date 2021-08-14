@@ -37,13 +37,13 @@ fi
 tmux_commands()
 {
     for x in $(seq 1 5); do
-	for y in $(seq 1 5); do 
-	    for i in "gl" ü "ck fa" ĩ "l "; do
-		printf "send-keys '%s'\n" "$i"
-		sleepf
-	    done
-	done
-	printf "send-keys 0x0d\n"
+        for y in $(seq 1 5); do
+            for i in "gl" ü "ck fa" ĩ "l "; do
+                printf "send-keys '%s'\n" "$i"
+                sleepf
+            done
+        done
+        printf "send-keys 0x0d\n"
     done
     printf "send-keys 0x0d\n"
     sleep 1
@@ -53,9 +53,9 @@ tmux_commands()
     printf "send-keys 0x04\n"
     # This will get killed by SIGPIPE.
     while printf "show-options\n" && sleep 1; do
-	:
+        :
     done
-} 
+}
 
 tmux_stdin()
 {
@@ -73,25 +73,25 @@ post()
 {
     # Look for bad output: ')' or \374
     (
-	unset LC_ALL
-	unset LC_CTYPE
-	unset LANGUAGE
-	! env LANG=C grep -E -q "%output %0 (\)|$(printf \\374))" "$(basename "$0").d/baseline.tmux.log"
-	# Implicit exitcode return.
+        unset LC_ALL
+        unset LC_CTYPE
+        unset LANGUAGE
+        ! env LANG=C grep -E -q "%output %0 (\)|$(printf \\374))" "$(basename "$0").d/baseline.tmux.log"
+        # Implicit exitcode return.
     )
     return "$?"
 }
 
 case $1 in
-    tmux)
-	shift;
-	tmux_stdin "$@";;
-    baseline)
-	baseline;;
-    mosh-args)
-	printf "%s\n" "--predict=always";;
-    post)
-	post;;
-    *)
-	fail "unknown test argument %s\n" "$1";;
+  tmux)
+    shift;
+    tmux_stdin "$@";;
+  baseline)
+    baseline;;
+  mosh-args)
+    printf "%s\n" "--predict=always";;
+  post)
+    post;;
+  *)
+    fail "unknown test argument %s\n" "$1";;
 esac

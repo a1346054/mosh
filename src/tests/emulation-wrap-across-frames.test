@@ -28,17 +28,17 @@ baseline()
     printf '\033[H\033[J'
 
     for x in $(seq 1 10); do
-	printf "abcdXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX1234"
-	sleepf
-	printf "ABCDxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx5678"
-	sleepf
+        printf "abcdXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX1234"
+        sleepf
+        printf "ABCDxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx5678"
+        sleepf
     done
     printf '\n'
-} 
+}
 
 case $1 in
-    baseline|direct)
-	baseline;;
-    *)
-	fail "unknown test argument %s\n" "$1";;
+  baseline|direct)
+    baseline;;
+  *)
+    fail "unknown test argument %s\n" "$1";;
 esac

@@ -26,7 +26,7 @@ baseline()
     printf '\033[H\033[J'
     # Fill with sample text
     for i in $(seq 1 24); do
-	printf '\ntext %s' "$i"
+        printf '\ntext %s' "$i"
     done
     # Scroll up 4 lines
     printf '\033[4S'
@@ -40,7 +40,6 @@ baseline()
     printf '\033[24;1HLast line'
     # and line 1
     printf '\033[HFirst line\n'
-
 }
 
 post()
@@ -49,28 +48,28 @@ post()
     capture="$(basename "$0").d/baseline.capture"
     # 'Bad line' should have been overwritten
     if grep -q '^Bad line$' "$capture"; then
-	exit 1
+        exit 1
     fi
     # The first four lines should have scrolled off
     if grep -q '^text [1-4]$' "$capture"; then
-	exit 1
+        exit 1
     fi
     # The last line should not have scrolled off or been overwritten
     if ! grep -q '^text 24$' "$capture"; then
-	exit 1
+        exit 1
     fi
     # 20 lines of the original text should remain
     if [ "$(grep -c '^text' "$capture")" -ne 20 ]; then
-	exit 1
+        exit 1
     fi
     exit 0
 }
 
 case $1 in
-    baseline)
-	baseline;;
-    post)
-	post;;
-    *)
-	fail "unknown test argument %s\n" "$1";;
+  baseline)
+    baseline;;
+  post)
+    post;;
+  *)
+    fail "unknown test argument %s\n" "$1";;
 esac

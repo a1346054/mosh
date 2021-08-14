@@ -24,7 +24,7 @@ baseline()
     # Generate updates that don't change the screen
     i=0
     while [ "$i" -lt 10 ] && printf 'x\b' && sleep 1; do
-	i=$((i + 1))
+        i=$((i + 1))
     done
 }
 
@@ -35,7 +35,7 @@ post()
 
     # If this system can't actually report runtime, bail.
     if [ -z "$runtime" ] || [ "$runtime" -eq "-" ]; then
-	exit 0
+        exit 0
     fi
 
     # If we ran for more than one second, fail.
@@ -43,16 +43,16 @@ post()
     bigger=${runtime%:*}
     onesec=$(echo "$seconds >= 1" | bc)
     if [ "$onesec" -eq 1 ] || [ "$bigger" -ne 0 ]; then
-	exit 1
+        exit 1
     fi
     exit 0
 }
 
 case $1 in
-    baseline)
-	baseline;;
-    post)
-	post;;
-    *)
-	fail "unknown test argument %s\n" "$1";;
+  baseline)
+    baseline;;
+  post)
+    post;;
+  *)
+    fail "unknown test argument %s\n" "$1";;
 esac

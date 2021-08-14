@@ -24,13 +24,13 @@ tmux_resize_commands()
     printf "split-window -%s\n" "${hv}"
     # Shrink the pane we created
     for i in $(seq 1 10); do
-	sleepf
-	printf "resize-pane -%s\n" "${shrink}"
+        sleepf
+        printf "resize-pane -%s\n" "${shrink}"
     done
     # And grow it
     for i in $(seq 1 10); do
-	sleepf
-	printf "resize-pane -%s\n" "${grow}"
+        sleepf
+        printf "resize-pane -%s\n" "${grow}"
     done
     sleep 1
     # Remove the pane we created.
@@ -73,11 +73,11 @@ baseline()
 }
 
 case $1 in
-    tmux)
-	shift;
-	tmux_stdin "$@";;
-    baseline)
-	baseline;;
-    *)
-	fail "unknown test argument %s\n" "$1";;
+  tmux)
+    shift;
+    tmux_stdin "$@";;
+  baseline)
+    baseline;;
+  *)
+    fail "unknown test argument %s\n" "$1";;
 esac

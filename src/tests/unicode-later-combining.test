@@ -42,21 +42,21 @@ post()
 {
     export LANG=C
     if [ "$(tmux -V)" = "tmux 2.4" ]; then
-	skip "tmux 2.4 unicode combining bug breaks this test\n"
+        skip "tmux 2.4 unicode combining bug breaks this test\n"
     fi
     if grep -q "$(printf '^\302\240\314\202$')" "$(basename "$0").d/baseline.capture"; then
-	exit 0
+        exit 0
     fi
     exit 1
 }
 
 case $1 in
-    baseline)
-	baseline;;
-    variant)
-	variant;;
-    post)
-	post;;
-    *)
-	fail "unknown test argument %s\n" "$1";;
+  baseline)
+    baseline;;
+  variant)
+    variant;;
+  post)
+    post;;
+  *)
+    fail "unknown test argument %s\n" "$1";;
 esac

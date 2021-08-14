@@ -25,22 +25,22 @@ baseline()
 {
     printf '\033[H\033[J'
     for dir in L M; do
-	for i in $(seq 0 2) $(seq 22 26); do
-	    printf '%d\r' "$i"
-	    printf '\033[%d%s' "$i" "$dir"
-	    # On the one hand, we'd like to test that this works
-	    # properly on both client and server, which requires
-	    # delays so that each iteration percolates to the client
-	    # by itself.  On the other hand, that makes the test take
-	    # a long time.  Compromise on .1 second.
-	    sleepf
-	done
+        for i in $(seq 0 2) $(seq 22 26); do
+            printf '%d\r' "$i"
+            printf '\033[%d%s' "$i" "$dir"
+            # On the one hand, we'd like to test that this works
+            # properly on both client and server, which requires
+            # delays so that each iteration percolates to the client
+            # by itself.  On the other hand, that makes the test take
+            # a long time.  Compromise on .1 second.
+            sleepf
+        done
     done
 }
 
 case $1 in
-    baseline)
-	baseline;;
-    *)
-	fail "unknown test argument %s\n" "$1";;
+  baseline)
+    baseline;;
+  *)
+    fail "unknown test argument %s\n" "$1";;
 esac

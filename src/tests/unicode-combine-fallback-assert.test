@@ -28,8 +28,8 @@ baseline()
 }
 
 case $1 in
-    baseline)
-	baseline;;
-    *)
-	fail "unknown test argument %s\n" "$1";;
+  baseline)
+    baseline;;
+  *)
+    fail "unknown test argument %s\n" "$1";;
 esac

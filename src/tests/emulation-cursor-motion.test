@@ -24,8 +24,8 @@ baseline()
     printf '\033[H\033[J'
 
     while read -r x y text; do
-	printf '\033[%d;%dH%s' "$y" "$x" "$text"
-	sleepf
+        printf '\033[%d;%dH%s' "$y" "$x" "$text"
+        sleepf
     done <<EOF
 1 1 A
 10 1 B
@@ -48,11 +48,11 @@ baseline()
 32 23 S
 1 24 done
 EOF
-} 
+}
 
 case $1 in
-    baseline|direct)
-	baseline;;
-    *)
-	fail "unknown test argument %s\n" "$1";;
+  baseline|direct)
+    baseline;;
+  *)
+    fail "unknown test argument %s\n" "$1";;
 esac

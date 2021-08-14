@@ -18,8 +18,8 @@ PATH=$PATH:.:$srcdir
 if [ "$#" -eq 0 ]; then
     do_tmux=
     case $(basename "$0" .test) in
-	repeat-with-input)
-	    do_tmux=tmux;;
+      repeat-with-input)
+        do_tmux=tmux;;
     esac
     e2e-test "$0" baseline client server ${do_tmux}
     exit
@@ -29,14 +29,14 @@ fi
 client()
 {
     for i in $(seq 1 "$REPEAT_TEST_LOOPCOUNT"); do
-	(sleep 15; kill "$$") &
-	killpid=$!
-	if ! "$@"; then
-	    printf "### iteration %d failed\n" "$i"
-	    kill "$killpid"
-	    exit 1
-	fi
-	kill "$killpid"
+        (sleep 15; kill "$$") &
+        killpid=$!
+        if ! "$@"; then
+            printf "### iteration %d failed\n" "$i"
+            kill "$killpid"
+            exit 1
+        fi
+        kill "$killpid"
     done
 }
 
@@ -52,7 +52,7 @@ server()
 tmux_commands()
 {
     while printf "send-keys 0x0d\n" && sleepf; do
-	:
+        :
     done
 }
 
@@ -70,22 +70,22 @@ baseline()
 post()
 {
     if [ "$(grep -c "@@@ done" "$(basename "$0").d/baseline.tmux.log")" -lt "$REPEAT_TEST_LOOPCOUNT" ]; then
-	exit 1
+        exit 1
     fi
 }
 
 case $1 in
-    tmux)
-	shift;
-	tmux_stdin "$@";;
-    baseline)
-	baseline;;
-    client)
-	shift
-	client "$@";;
-    server)
-	shift
-	server "$@";;
-    *)
-	fail "unknown test argument %s\n" "$1";;
+  tmux)
+    shift;
+    tmux_stdin "$@";;
+  baseline)
+    baseline;;
+  client)
+    shift
+    client "$@";;
+  server)
+    shift
+    server "$@";;
+  *)
+    fail "unknown test argument %s\n" "$1";;
 esac
